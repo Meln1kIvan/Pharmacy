@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Pharmacy.Views.Prices"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Pharmacy.Views"
+             xmlns:models="clr-namespace:Pharmacy.Models"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="1000">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- DataGrid для отображения данных -->
+        <DataGrid x:Name="pricesDataGrid" Grid.Row="1" ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding PricesID}" Width="*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="DrugName" Binding="{Binding DrugsModel.Name}" Width="*"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Панель с полями для ввода данных -->
+        <StackPanel Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Name:" VerticalAlignment="Center" Margin="5" Grid.Column="0" FontSize="14" Foreground="White"/>
+                <TextBox x:Name="nameTextBox" Margin="5" Grid.Column="1"/>
+
+                <TextBlock Text="DrugName:" VerticalAlignment="Center" Margin="5" Grid.Column="2" FontSize="14" Foreground="White"/>
+                <ComboBox x:Name="drugsComboBox" Margin="5" Grid.Column="3"/>
+
+                <TextBlock Text="Price:" VerticalAlignment="Center" Margin="5" Grid.Column="4" FontSize="14" Foreground="White"/>
+                <TextBox x:Name="priceTextBox" Margin="5" Grid.Column="5"/>
+            </Grid>
+        </StackPanel>
+
+        <!-- Панель с кнопками управления -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Content="Добавить" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Обновить" Click="UpdateButton_Click" Margin="5"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Создать" Click="CreateTableButton_Click" Margin="5"/>
+            <Button Content="Фильтр" Click="FilterByDrugButton_Click" Margin="5"/>
+            <TextBlock Text="Минимальная цена:" VerticalAlignment="Center" Margin="5" Foreground="White" FontSize="14"/>
+            <TextBox x:Name="minPriceTextBox" Margin="5" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Text="Максимальная цена:" VerticalAlignment="Center" Margin="5" Foreground="White" FontSize="14"/>
+            <TextBox x:Name="maxPriceTextBox" Margin="5" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button Content="Фильтр по цене" Click="FilterByPriceButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

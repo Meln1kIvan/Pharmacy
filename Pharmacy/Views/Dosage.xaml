@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Pharmacy.Views.Dosage"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:Pharmacy.Views"
+                 xmlns:models="clr-namespace:Pharmacy.Models"
+                 mc:Ignorable="d"
+                 d:DesignHeight="450" d:DesignWidth="1300">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- DataGrid для отображения данных -->
+        <DataGrid x:Name="dosageDataGrid" Grid.Row="1" ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Stretch" Background="#FFE3E3E3" BorderBrush="#FF707070" BorderThickness="1" GridLinesVisibility="All">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding DosageID}" Width="*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="DrugsName" Binding="{Binding DrugsModel.Name}" Width="*"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="*"/>
+                <DataGridTextColumn Header="MeasurementUnit" Binding="{Binding MeasurementUnit}" Width="*"/>
+                <DataGridTextColumn Header="DosageValue" Binding="{Binding DosageValue}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Панель с полями для ввода данных -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="5">
+            <TextBlock Text="Name:" VerticalAlignment="Center" Margin="5" FontSize="14" Foreground="White"/>
+            <TextBox x:Name="dosageNameTextBox" Width="200" Margin="5"/>
+
+            <TextBlock Text="DrugsName:" VerticalAlignment="Center" Margin="5" FontSize="14" Foreground="White"/>
+            <ComboBox x:Name="drugsComboBox" Width="200" Margin="5"/>
+
+            <TextBlock Text="Quantity:" VerticalAlignment="Center" Margin="5" Foreground="White" FontSize="14"/>
+            <TextBox x:Name="quantityTextBox" Width="100" Margin="5"/>
+
+            <TextBlock Text="MeasurementUnit:" VerticalAlignment="Center" Margin="5" FontSize="14" Foreground="White"/>
+            <TextBox x:Name="measurementUnitTextBox" Width="100" Margin="5"/>
+
+            <TextBlock Text="Dosage Value:" VerticalAlignment="Center" Margin="5" Foreground="White" FontSize="14"/>
+            <TextBox x:Name="dosageValueTextBox" Width="100" Margin="5"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
+            <Button Content="Добавить" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Обновить" Click="UpdateButton_Click" Margin="5"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Создать" Click="CreateTableButton_Click" Margin="5"/>
+            <Button Content="Фильтр" Click="FilterByDrugButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
