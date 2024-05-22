@@ -11,7 +11,7 @@ namespace Pharmacy
         {
             InitializeComponent();
         }
-
+        
         private void NavigationListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBoxItem selectedItem = (ListBoxItem)navigationListBox.SelectedItem;
